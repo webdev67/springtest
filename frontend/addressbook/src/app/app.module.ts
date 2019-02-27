@@ -2,7 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {SharedModule} from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { reducer } from './reducers';
 
 @NgModule({
   declarations: [
@@ -11,8 +14,9 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    MatButtonModule,
-    MatCheckboxModule
+    SharedModule,
+    StoreModule.forRoot({'app-wide':reducer}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]
