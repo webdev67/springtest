@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 import beans.Person;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-
+	
 }

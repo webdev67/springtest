@@ -8,11 +8,17 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import beans.Person;
 import repositories.PersonRepository;
+import services.PersonService;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class HelloController {
 	@Autowired PersonRepository repo;
+    @PersistenceContext
+	EntityManager em;
 	private String response;
     @RequestMapping("/")
     public String index() {
@@ -53,8 +61,11 @@ public class HelloController {
     public String hibernate() {
     	Person a = new Person();
     	a.setName("rami");
-    	repo.save(a);
+    	PersonService ps = new PersonService(em);
+    	ps.doSave(a);
     	return "Test";
     }
+    
+    
 
 }
