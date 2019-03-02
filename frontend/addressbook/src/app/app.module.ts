@@ -6,7 +6,6 @@ import {SharedModule} from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { reducer } from './reducers';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +14,7 @@ import { reducer } from './reducers';
     BrowserAnimationsModule,
     BrowserModule,
     SharedModule,
-    StoreModule.forRoot({'app-wide':reducer}),
+    StoreModule.forRoot({'app-wide': reducer}),
     StoreDevtoolsModule.instrument()
   ],
   providers: [],
