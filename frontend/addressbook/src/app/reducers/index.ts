@@ -3,10 +3,12 @@ import { Actions } from '../actions/actions';
 
 export interface State {
   showSideNav: boolean;
+  payload: any;
 }
 
 export const initialState: State = {
-  showSideNav: false
+  showSideNav: false,
+  payload: []
 };
 
 export function reducer(state = initialState, action: actions.AllActions): State {

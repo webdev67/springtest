@@ -1,0 +1,15 @@
+<!-- <button (click)="focusme($event)">Focus me</button> -->
+<form #form="ngForm">
+  <h3>Edit</h3>
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="app.name" name="name" required/>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Age" [(ngModel)]="app.age" name="age" required/>
+  </mat-form-field>
+  <mat-form-field *ngFor="let hobby of app.hobbies;trackBy trackByFn;let index = index">
+    <input matInput placeholder="Hobbies" [(ngModel)]="app.hobbies[index]" name="{{hobby}}" required class="full-width" [ngModelOptions]="{standalone: true}"/>
+  </mat-form-field>
+  <button mat-raised-button (click)="newHobby()" color="primary">Add Hobby</button>
+  <button mat-raised-button (click)="doSubmit()" color="primary" [disabled]="!form.valid">Submit</button>
+</form>
