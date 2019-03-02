@@ -8,15 +8,16 @@ import {AllActions, SideNav} from './store/reducer';
 })
 export class AppComponent {
   title = 'addressbook';
+  private myStore$;
   constructor(private store: Store<AllActions>) {
-    console.log(this.store);
-    this.store.dispatch(new SideNav(true));
-    this.store.subscribe(e => {
+    this.myStore$ = this.store.select('app-wide');
+    this.myStore$.dispatch(new SideNav(true));
+    this.myStore$.subscribe(e => {
       console.log(e);
     })
   }
 
   public doAction() {
-    this.store.dispatch(new SideNav(true));
+    this.myStore$.dispatch(new SideNav('data'));
   }
 }

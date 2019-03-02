@@ -14,7 +14,8 @@ export function reducer(state = initialState, action: actions.AllActions): State
     case Actions.SIDE_NAV:
       return {
         ...state,
-        showSideNav: !state.showSideNav
+        showSideNav: !state.showSideNav,
+        payload: action.payload
       };
     default:
       return state;
