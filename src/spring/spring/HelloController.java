@@ -7,18 +7,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import beans.Person;
+import repositories.PersonRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 public class HelloController {
+	@Autowired PersonRepository repo;
 	private String response;
     @RequestMapping("/")
     public String index() {
@@ -38,11 +41,20 @@ public class HelloController {
     	Person a = new Person();
     	a.setName("rami");
     	a.setAge("35");
-    	List<String> hobbies = new ArrayList<String>();
+    	ArrayList<String> hobbies = new ArrayList<String>();
     	hobbies.add("running");
     	hobbies.add("motorcycles");
     	a.setHobbies(hobbies);
         return Collections.singletonMap("response", a);
+    }
+    
+    @CrossOrigin(origins = "http://localhost:4201")
+    @RequestMapping(value = "/hibernate", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String hibernate() {
+    	Person a = new Person();
+    	a.setName("rami");
+    	repo.save(a);
+    	return "Test";
     }
 
 }

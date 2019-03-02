@@ -1,16 +1,29 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.springframework.context.annotation.ComponentScan;
+@ComponentScan
+@Entity
 public class Person {
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String name;
 	private String age;
-	private List<String> hobbies;
+	private ArrayList<String> hobbies;
 	
-	public List<String> getHobbies() {
+	public ArrayList<String> getHobbies() {
 		return hobbies;
 	}
-	public void setHobbies(List<String> hobbies) {
+	public void setHobbies(ArrayList<String> hobbies) {
 		this.hobbies = hobbies;
 	}
 	public String getName() {
