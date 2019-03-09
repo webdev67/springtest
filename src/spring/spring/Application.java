@@ -1,10 +1,8 @@
 package spring;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,12 +14,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-
-import repositories.PersonRepository;
 @Configuration
-@EntityScan("beans")
-@ComponentScan({"beans","repositories","spring"})
+@EntityScan({"beans", "services"})
+@ComponentScan({"beans","repositories","spring","services"})
 @SpringBootApplication
 @EnableJpaRepositories("repositories")
 public class Application extends SpringBootServletInitializer{

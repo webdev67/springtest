@@ -1,33 +1,32 @@
 package spring;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
-import beans.Person;
-import repositories.PersonRepository;
-import services.PersonService;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import beans.Person;
+import repositories.PersonRepository;
+import services.PersonService;
 
 @RestController
 public class HelloController {
-	@Autowired PersonRepository repo;
+	@Autowired PersonService ps;
     @PersistenceContext
 	EntityManager em;
 	private String response;
@@ -61,11 +60,26 @@ public class HelloController {
     public String hibernate() {
     	Person a = new Person();
     	a.setName("rami");
-    	PersonService ps = new PersonService(em);
     	ps.doSave(a);
     	return "Test";
     }
     
+    @RequestMapping(value = "/parsejson", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String parseJson(@RequestBody String body) {
+    	ps.savePerson(body);
+    	return body;
+    }
     
+    @RequestMapping(value = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deletePerson(@RequestParam("id") String id) {
+    	ps.deletePerson(Integer.parseInt(id));
+    	return "done";
+    }
+    
+    @RequestMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updatePerson(@RequestParam("id") String id, @RequestBody String body) throws JsonParseException, JsonMappingException, NumberFormatException, IOException {
+    	ps.updatePerson(Integer.parseInt(id), body);
+    	return "done";
+    }
 
 }

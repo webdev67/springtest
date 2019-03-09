@@ -1,14 +1,12 @@
 package beans;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 @Entity
@@ -18,13 +16,13 @@ public class Person {
 	private Long id;
 	private String name;
 	private String age;
-	private ArrayList<String> hobbies;
+	private String hobbies;
 	
-	public ArrayList<String> getHobbies() {
+	public String getHobbies() {
 		return hobbies;
 	}
 	public void setHobbies(ArrayList<String> hobbies) {
-		this.hobbies = hobbies;
+		this.hobbies = StringUtils.join(hobbies,',');
 	}
 	public String getName() {
 		return name;
