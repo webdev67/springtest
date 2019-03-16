@@ -1,13 +1,16 @@
 <button mat-raised-button color="primary" (click)="doAction()">Basic</button>
 <mat-card>
-  <form>
+  <form #form="ngForm">
     <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="app.name" name="name"/>
+      <input matInput placeholder="Name" [(ngModel)]="app.name" name="name" required/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Age" [(ngModel)]="app.age" name="age"/>
+      <input matInput placeholder="Age" [(ngModel)]="app.age" name="age" required/>
     </mat-form-field>
-    <button mat-raised-button (click)="doSubmit()" color="primary">Submit</button>
+    <mat-form-field>
+      <input matInput placeholder="Hobbies" [(ngModel)]="app.hobbies" name="hobbies" required/>
+    </mat-form-field>
+    <button mat-raised-button (click)="doSubmit()" color="primary" [disabled]="!form.valid">Submit</button>
   </form>
 </mat-card>
 <div class="table mat-elevation-z8">

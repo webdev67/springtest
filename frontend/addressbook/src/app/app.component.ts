@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   private myStore$;
   public app = {
     name: '',
-    age: ''
+    age: '',
+    hobbies: []
   };
   public persons = [];
   constructor(private store: Store<AllActions>, private appService: AppService) {
@@ -45,6 +46,11 @@ export class AppComponent implements OnInit {
 
   public doSubmit() {
     console.log(this.app);
+    if (this.app.hobbies.toString().length > 0) {
+      this.app.hobbies = this.app.hobbies.toString().split(',');
+    } else {
+      this.app.hobbies = [];
+    }
     this.appService.postPerson(this.app).subscribe(e => {
       console.log(e);
       this.ngOnInit();
