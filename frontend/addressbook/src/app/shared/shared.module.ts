@@ -4,7 +4,8 @@ import {
   MatCheckboxModule,
   MatCardModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatToolbarModule
 } from '@angular/material';
 import {
   FormsModule
@@ -21,7 +22,8 @@ import {
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule
   ],
   exports: [
     MatButtonModule,
@@ -30,7 +32,8 @@ import {
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule
   ]
 })
 export class SharedModule {}
