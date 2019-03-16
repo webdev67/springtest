@@ -10,10 +10,20 @@
     <button mat-raised-button (click)="doSubmit()" color="primary">Submit</button>
   </form>
 </mat-card>
-<div *ngFor="let person of persons">
-  <p>{{person.name}}</p>
-  <p>{{person.age}}</p>
-  <ul>
+<div class="table mat-elevation-z8">
+<div class="table-row">
+  <div class="table-cell">Name</div>
+  <div class="table-cell">Age</div>
+  <div class="table-cell">Hobbies</div>
+  <div class="table-cell">Actions</div>
+</div>
+<div *ngFor="let person of persons" class="table-row">
+  <p class="table-cell">{{person.name}}</p>
+  <p class="table-cell">{{person.age}}</p>
+  <ul class="table-cell">
     <li *ngFor="let hobby of person.hobbies">{{hobby}}</li>
   </ul>
+  <div class="table-cell">
+    <span (click)="delete(person)">X</span>
+  </div>
 </div>

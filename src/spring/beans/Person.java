@@ -36,5 +36,11 @@ public class Person {
 	public void setAge(String age) {
 		this.age = age;
 	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Long getId() {
+		return id;
+	}
 	
 }

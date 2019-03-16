@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import {AllActions, SideNav} from './store/reducer';
 import {AppService} from './services/app.service';
 
@@ -10,7 +10,7 @@ import {AppService} from './services/app.service';
   encapsulation: ViewEncapsulation.None,
   providers: [AppService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'addressbook';
   private myStore$;
   public app = {
@@ -30,11 +30,31 @@ export class AppComponent {
     this.myStore$.dispatch(new SideNav(true));
   }
 
+  public ngOnInit() {
+    this.persons = [];
+    this.appService.getPerson().subscribe(response => {
+      console.log(response);
+      response.forEach(res => {
+        if (res.hobbies) {
+          res.hobbies = res.hobbies.split(',');
+        }
+        this.persons.push(res);
+      });
+    });
+  }
+
   public doSubmit() {
     console.log(this.app);
-    this.appService.getPerson().subscribe(e => {
+    this.appService.postPerson(this.app).subscribe(e => {
       console.log(e);
-      this.persons.push(e.response);
+      this.ngOnInit();
+    });
+  }
+
+  public delete(person) {
+    console.log(person);
+    this.appService.deletePerson(person).subscribe(e => {
+      this.ngOnInit();
     });
   }
 }

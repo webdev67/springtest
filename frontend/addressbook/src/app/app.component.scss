@@ -1,5 +1,27 @@
+@mixin borders() {
+  border-style:solid;
+  border-width:0.5px;
+  border-color:gray;
+}
 app-root{
   mat-form-field{
     width:100%;
+  }
+  .table {
+    margin: 0 auto;
+    display: table;
+    @include borders();
+  }
+  .table-row {
+    display: table-row;
+    @include borders();
+  }
+  .table-cell {
+    display: table-cell;
+    @include borders();
+  }
+  .table-caption {
+    display: table-caption;
+    @include borders();
   }
 }
