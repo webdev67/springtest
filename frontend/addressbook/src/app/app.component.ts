@@ -74,6 +74,16 @@ export class AppComponent implements OnInit {
       height: '400px',
       width: '600px',
       data: person
+    }).afterClosed().subscribe(e => {
+      if (e.hobbies.toString().length > 0) {
+        e.hobbies = e.hobbies.toString().split(',');
+      } else {
+        e.hobbies = [];
+      }
+      this.appService.postPerson(e).subscribe(g => {
+        console.log(g);
+        this.ngOnInit();
+      });
     });
   }
 }

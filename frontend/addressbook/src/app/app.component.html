@@ -29,7 +29,7 @@
   <p class="table-cell">{{person.name}}</p>
   <p class="table-cell">{{person.age}}</p>
   <ul class="table-cell">
-    <li *ngFor="let hobby of person.hobbies">{{hobby}}</li>
+    <li>{{person.hobbies}}</li>
   </ul>
   <div class="table-cell">
     <span (click)="delete(person)">X</span>

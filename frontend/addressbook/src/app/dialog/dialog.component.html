@@ -1,3 +1,15 @@
 <pre>
   {{data|json}}
 </pre>
+<form #form="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="app.name" name="name" required/>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Age" [(ngModel)]="app.age" name="age" required/>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Hobbies" [(ngModel)]="app.hobbies" name="hobbies" required/>
+  </mat-form-field>
+  <button mat-raised-button (click)="doSubmit()" color="primary" [disabled]="!form.valid">Submit</button>
+</form>
