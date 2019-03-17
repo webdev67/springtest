@@ -1,6 +1,6 @@
 @mixin borders() {
   border-style:solid;
-  border-width:0.5px;
+  border-width:0.1px;
   border-color:gray;
 }
 app-root{
@@ -10,6 +10,8 @@ app-root{
   .table {
     margin: 0 auto;
     display: table;
+    padding: 10px;
+    width: 80%;
     @include borders();
   }
   .table-row {
@@ -18,6 +20,7 @@ app-root{
   }
   .table-cell {
     display: table-cell;
+    padding: 10px;
     @include borders();
   }
   .table-caption {

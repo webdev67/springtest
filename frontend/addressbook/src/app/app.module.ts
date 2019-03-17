@@ -6,9 +6,11 @@ import {SharedModule} from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { reducer } from './reducers';
+import { DialogComponent } from './dialog/dialog.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -18,6 +20,7 @@ import { reducer } from './reducers';
     StoreDevtoolsModule.instrument()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

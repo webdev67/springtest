@@ -2,6 +2,8 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {AllActions, SideNav} from './store/reducer';
 import {AppService} from './services/app.service';
+import {DialogComponent} from './dialog/dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,11 @@ export class AppComponent implements OnInit {
     hobbies: []
   };
   public persons = [];
-  constructor(private store: Store<AllActions>, private appService: AppService) {
+  constructor(
+    private store: Store<AllActions>,
+    private appService: AppService,
+    private dialog: MatDialog
+  ) {
     this.myStore$ = this.store.select('app-wide');
     this.myStore$.dispatch(new SideNav(true));
     this.myStore$.subscribe(e => {
@@ -61,6 +67,13 @@ export class AppComponent implements OnInit {
     console.log(person);
     this.appService.deletePerson(person).subscribe(e => {
       this.ngOnInit();
+    });
+  }
+  public openDialog(person) {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '400px',
+      width: '600px',
+      data: person
     });
   }
 }
