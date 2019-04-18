@@ -14,6 +14,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class AppComponent implements OnInit {
   title = 'addressbook';
+  public backendType = 'spring';
   private myStore$;
   public app = {
     name: '',
@@ -71,19 +72,21 @@ export class AppComponent implements OnInit {
   }
   public openDialog(person) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      height: '400px',
+      height: '600px',
       width: '600px',
       data: person
     }).afterClosed().subscribe(e => {
-      if (e.hobbies.toString().length > 0) {
+      if (e && e.hobbies.toString().length > 0) {
         e.hobbies = e.hobbies.toString().split(',');
-      } else {
+      } else if (e) {
         e.hobbies = [];
       }
-      this.appService.postPerson(e).subscribe(g => {
-        console.log(g);
-        this.ngOnInit();
-      });
+      if (e) {
+        this.appService.postPerson(e).subscribe(g => {
+          console.log(g);
+          this.ngOnInit();
+        });
+      }
     });
   }
 }

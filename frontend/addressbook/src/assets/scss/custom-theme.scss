@@ -1,7 +1,7 @@
 @import '../node_modules/@angular/material/theming';
 
 $custom-typography: mat-typography-config(
-    $font-family: 'Open Sans'
+    $font-family: 'Roboto'
 );
 @include mat-core($custom-typography);
 
@@ -50,7 +50,16 @@ contrast: (
   )
 );
 
-$custom-theme-primary: mat-palette($mat-blue, A200, A400, A700);
+$mat-maroon: (
+  50: #521c2b,
+  A100: #521c2b,
+  contrast: (
+    50: white,
+    A100: white
+  )
+);
+
+$custom-theme-primary: mat-palette($mat-maroon, 50, A100, A100);
 $custom-theme-accent: mat-palette($mat-yellow, A200, A400, A700);
 $custom-theme-warn: mat-palette($mat-yellow, A200, A400, A700);
 $custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);

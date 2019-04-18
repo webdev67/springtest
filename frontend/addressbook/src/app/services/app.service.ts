@@ -7,12 +7,12 @@ export class AppService {
 
   }
   getPerson(): Observable<any> {
-    return this.http.get('http://localhost:8080/gs-spring-boot-0.1.0/person');
+    return this.http.get('http://localhost:8080/person');
   }
   postPerson(body): Observable<any> {
-    return this.http.post('http://localhost:8080/gs-spring-boot-0.1.0/person', body);
+    return this.http.post('http://localhost:8080/person', body);
   }
   deletePerson(body): Observable<any> {
-    return this.http.post('http://localhost:8080/gs-spring-boot-0.1.0/deletePerson', body);
+    return this.http.post('http://localhost:8080/deletePerson', body);
   }
 }

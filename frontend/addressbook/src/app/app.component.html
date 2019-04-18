@@ -1,9 +1,12 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-   <span>Address Book</span>
+   <span>Person Profile - Add a Person along with their hobbies</span>
  </mat-toolbar-row>
 </mat-toolbar>
-<button mat-raised-button color="primary" (click)="doAction()">Basic</button>
+<mat-select [(ngModel)]="backendType">
+  <mat-option value="spring">Spring Backend</mat-option>
+</mat-select>
+<!-- <button mat-raised-button color="primary" (click)="doAction()">Basic</button> -->
 <mat-card>
   <form #form="ngForm">
     <mat-form-field>
@@ -18,7 +21,8 @@
     <button mat-raised-button (click)="doSubmit()" color="primary" [disabled]="!form.valid">Submit</button>
   </form>
 </mat-card>
-<div class="table mat-elevation-z8">
+<br />
+<div class="table mat-table mat-elevation-z8">
 <div class="table-row">
   <div class="table-cell">Name</div>
   <div class="table-cell">Age</div>
@@ -28,11 +32,11 @@
 <div *ngFor="let person of persons" class="table-row">
   <p class="table-cell">{{person.name}}</p>
   <p class="table-cell">{{person.age}}</p>
-  <ul class="table-cell">
-    <li>{{person.hobbies}}</li>
-  </ul>
+  <mat-list class="table-cell">
+    <mat-list-item *ngFor="let hobby of person.hobbies; let index = index">{{person.hobbies[index]}}</mat-list-item>
+  </mat-list>
   <div class="table-cell">
-    <span (click)="delete(person)">X</span>
-    <span (click)="openDialog(person)">Open</span>
+    <button mat-raised-button (click)="delete(person)" class="mat-primary left">Delete</button>
+    <button mat-raised-button (click)="openDialog(person)" class="mat-primary right">Edit</button>
   </div>
 </div>
