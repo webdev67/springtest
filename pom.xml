@@ -67,6 +67,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<tomcat.version>8.5.38</tomcat.version>
 		<start-class>spring.Application</start-class>
 	</properties>
 
@@ -83,8 +84,7 @@
 		<profile>
 			<id>local</id>
 			<properties>
-				<war.name>
-					prod</war.name>
+				<war.name>prod</war.name>
 			</properties>
 		</profile>
 	</profiles>
@@ -95,6 +95,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<sourceDirectory>${basedir}</sourceDirectory>
 	</build>
 	<packaging>war</packaging>
 </project>
