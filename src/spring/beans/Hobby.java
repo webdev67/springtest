@@ -16,15 +16,9 @@ public class Hobby{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String hobby;
-	@ManyToOne
 	@JoinColumn(name = "person_id")
-	private Person pers;
-	public Person getPers() {
-		return pers;
-	}
-	public void setPers(Person pers) {
-		this.pers = pers;
-	}
+	private Long pers;
+
 	public Long getId() {
 		return id;
 	}

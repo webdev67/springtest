@@ -21,7 +21,7 @@ public class Person {
 	private Long id;
 	private String name;
 	private String age;
-	@OneToMany(cascade= CascadeType.PERSIST)
+	@OneToMany(cascade= CascadeType.ALL)
 	@JoinColumn(name = "person_id")
 	private Set<Hobby> hobbies = new HashSet<>();
 	
