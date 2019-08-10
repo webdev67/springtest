@@ -17,7 +17,6 @@ public class Hobby{
 	private Long id;
 	private String hobby;
 	@JoinColumn(name = "person_id")
-	private Long pers;
 
 	public Long getId() {
 		return id;
