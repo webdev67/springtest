@@ -1,6 +1,7 @@
 package services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,5 +25,9 @@ public class HobbyService {
 	
 	public EntityManager getEntityManager() {
 		return this.em;
+	}
+	
+	public Optional<Hobby> getHobby(long id) {
+		return this.hr.findById(id);
 	}
 }

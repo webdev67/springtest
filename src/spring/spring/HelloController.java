@@ -55,6 +55,11 @@ public class HelloController {
 		return hs.getHobbies();
 	}
 	
+	@GetMapping("/hobby/{id}")
+	public Optional<Hobby> getHobby(@PathVariable("id") long id) {
+		return hs.getHobby(id);
+	}
+	
 	@GetMapping("/allhobbies")
 	public @ResponseBody List<Hobby> getAllHobbies() {
 		List<Hobby> items = null;
