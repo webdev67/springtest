@@ -3,7 +3,8 @@ package repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import beans.Person;
+import beans.Hobby;
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface HobbyRepository extends JpaRepository<Hobby, Long> {
+	
 }

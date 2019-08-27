@@ -2,6 +2,9 @@ package spring;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import beans.Hobby;
 import beans.Person;
+import services.HobbyService;
 import services.PersonService;
 
 @Controller
@@ -21,6 +26,7 @@ import services.PersonService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class HelloController {
 	@Autowired PersonService ps;
+	@Autowired HobbyService hs;
 	@GetMapping("/person")
 	public @ResponseBody List<Person> getPeople() {
 		return ps.getPeople();
@@ -42,5 +48,23 @@ public class HelloController {
 	public boolean deletePerson(@RequestBody Person p) {
 		ps.deletePerson(p);
 		return true;
+	}
+	
+	@GetMapping("/hobby")
+	public @ResponseBody List<Hobby> getHobby() {
+		return hs.getHobbies();
+	}
+	
+	@GetMapping("/allhobbies")
+	public @ResponseBody List<Hobby> getAllHobbies() {
+		List<Hobby> items = null;
+		try {
+		Query q = hs.getEntityManager().createQuery("select h from Hobby h order by h.hobby", Hobby.class);
+		items = (List<Hobby>) q.getResultList();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return items;
 	}
 }
