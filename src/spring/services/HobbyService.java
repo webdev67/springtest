@@ -30,4 +30,8 @@ public class HobbyService {
 	public Optional<Hobby> getHobby(long id) {
 		return this.hr.findById(id);
 	}
+	
+	public void deleteHobby(long id) {
+		this.hr.deleteById(id);
+	}
 }
